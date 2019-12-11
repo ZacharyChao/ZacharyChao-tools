@@ -6,5 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>ZacharyChao-elastisearch</module>
+  	<module>ZacharyChao-ES</module>
   </modules>
 </project>
