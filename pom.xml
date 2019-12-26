@@ -7,5 +7,6 @@
   <modules>
   	<module>ZacharyChao-elastisearch</module>
   	<module>ZacharyChao-ES</module>
+  	<module>zacharychao-email</module>
   </modules>
 </project>
