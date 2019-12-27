@@ -20,15 +20,17 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
 public class MailUtil {
-	private static final String ALIDM_SMTP_HOST = "smtp.aliyun.com";
-    private static final int ALIDM_SMTP_PORT = 25;// 或80
+//	private static final String ALIDM_SMTP_HOST = "smtp.aliyun.com";
+	private static final String ALIDM_SMTP_HOST = "smtp.sunwayworld.com";
+//    private static final int ALIDM_SMTP_PORT = 25;// 或80
 
     // 发件人的账号 和 密码
     private String user;
     private String password;
 
     public MailUtil() {
-        this("zacharychao@aliyun.com", "5917499627zlmm");
+//        this("zacharychao@aliyun.com", "5917499627zlmm");
+    	this("zhaolei0502@sunwayworld.com", "sunway123&");
     }
     
     public MailUtil(String user, String password) {
