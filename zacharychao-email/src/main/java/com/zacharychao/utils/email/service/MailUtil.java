@@ -19,18 +19,24 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 public class MailUtil {
 //	private static final String ALIDM_SMTP_HOST = "smtp.aliyun.com";
-	private static final String ALIDM_SMTP_HOST = "smtp.sunwayworld.com";
+	private static final String ALIDM_SMTP_HOST = "smtp.qq.com";
 //    private static final int ALIDM_SMTP_PORT = 25;// 或80
-
+	
     // 发件人的账号 和 密码
     private String user;
     private String password;
 
     public MailUtil() {
 //        this("zacharychao@aliyun.com", "5917499627zlmm");
-    	this("zhaolei0502@sunwayworld.com", "sunway123&");
+//    	this("zhaolei0502@sunwayworld.com", "sunway123&");
+    	
+    	
+    	this("931565534@qq.com", "pctrgftuiitxbccd");
     }
     
     public MailUtil(String user, String password) {
@@ -40,7 +46,12 @@ public class MailUtil {
     
     public static void main(String[] args) {
 //        new MailUtil().send("931565534@qq.com", "测试1", "nihao显示");
-        new MailUtil().send("931565534@qq.com", "测试1", "市劳动纠纷联赛积分了","C:\\Users\\Administrator\\Desktop\\Proguard.xml");
+    	String s= getParamValue();
+        JSONObject object = JSON.parseObject(s);
+        String user = object.getString("user");
+        System.out.println(user);
+        
+//        new MailUtil().send("zacharychao@aliyun.com", "测试1", "市劳动纠纷联赛积分了","C:\\Users\\Administrator\\Desktop\\Proguard.xml");
     }
     
     /**
@@ -157,4 +168,8 @@ public class MailUtil {
         }
         return null;
     }
+    public static String getParamValue() {
+    	return "{'user':'931565534@qq.com','password':'pctrgftuiitxbccd'}";
+    }
+    
 }
