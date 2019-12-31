@@ -8,5 +8,6 @@
   	<module>ZacharyChao-elastisearch</module>
   	<module>ZacharyChao-ES</module>
   	<module>zacharychao-email</module>
+  	<module>zacharychao-tools-elasticsearch</module>
   </modules>
 </project>
