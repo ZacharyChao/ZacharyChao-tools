@@ -48,22 +48,24 @@ public class TransportExample {
 	}
 	
 	public static void printSearchListByParam() {
-		Settings setting = Settings.builder().put("cluster.name","elasticsearch").build();
-		TransportClient c = new PreBuiltTransportClient(setting);
-		try {
-			c.addTransportAddress(new TransportAddress(InetAddress.getByName("47.98.163.175"),9300));
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(client == null) {
+			Settings setting = Settings.builder().put("cluster.name", "elasticsearch").build();
+			client = new PreBuiltTransportClient(setting);
+			try {
+				client.addTransportAddress(new TransportAddress(InetAddress.getByName(HOST),9300));
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+			
+			BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+			MatchPhraseQueryBuilder matchPhraseQuery = QueryBuilders.matchPhraseQuery("speccode", "123456");
+			boolQuery.must(matchPhraseQuery);
+			
+			SearchResponse searchResponse = client.prepareSearch("test1").setTypes("doc").setQuery(boolQuery).get();
+			SearchHits hits = searchResponse.getHits();
+			hits.forEach(item -> System.out.println(item.getSourceAsString()));
+			close();
 		}
-		
-		BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
-		MatchPhraseQueryBuilder matchPhraseQuery = QueryBuilders.matchPhraseQuery("speccode", "123456");
-		boolQuery.must(matchPhraseQuery);
-		SearchResponse searchResponse = c.prepareSearch("test1").setTypes("doc").setQuery(boolQuery).get();
-		SearchHits hits = searchResponse.getHits();
-		hits.forEach(item -> System.out.println(item.getSourceAsString()));
-		c.close();
 	}
 	
 	public static List<String> searchAll(){
@@ -86,7 +88,6 @@ public class TransportExample {
 		try {
 			init();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Map<String,String> map = new HashMap<>();
